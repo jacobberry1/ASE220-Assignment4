@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Animals Available
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <link rel ="stylesheet" href ="scss/shelter.css">
+</head>
+<body>
+    <h1 class="text-center">
+        Kenton County Animal Shelter
+    </h1>
+    <h2 class="text-center">
+        Animals Currently Available for Adoption
+    </h2>
+    <div class="container">
+        <div class="row" id="dogspage">
+            
+        </div>
+    </div>
+    <div class="position-relative h-100" id="buttonHolder">
+        <button type="button" class="btn btn-light btn-lg text-nowrap position-absolute top-100 start-50 translate-middle" id="loadmore">
+            Load More
+        </button>
+    </div>
+
+    <script>
+        const dogs=[
+            {
+                img:'Wishbone.png',
+                name:'Wishbone',
+                breed:'American Bulldog cross',
+                spayedOrNeutered:'Spayed/Neutered',
+                gender:'male',
+                age:'2Yrs 1Mths 2Wks (approx)',
+                animalId:20579
+            },
+            {
+                img:'Benny.png',
+                name:'Benny',
+                breed:'Australian Shepherd cross',
+                spayedOrNeutered:'Spayed/Neutered',
+                gender:'male',
+                age:'2Yrs 1Mths 4Wks (approx)',
+                animalId:23531
+            },
+            {
+                img:'Cornelia.png',
+                name:'Cornelia',
+                breed:'Boxer cross',
+                spayedOrNeutered:'Spayed/Neutered',
+                gender:'female',
+                age:'6Yrs 2Mths 3Wks (approx)',
+                animalId:23390
+            },
+            {
+                img:'Niko.png',
+                name:'Niko',
+                breed:'Domestic Longhair cross',
+                spayedOrNeutered:'Spayed/Neutered',
+                gender:'male',
+                age:'3Mths 3Wks (approx)',
+                animalId:23541
+            },
+            {
+                img:'Howard.png',
+                name:'Howard',
+                breed:'Domestic Short Hair mixed Russian',
+                spayedOrNeutered:'Spayed/Neutered',
+                gender:'male',
+                age:'',
+                animalId:23882
+            },
+            {
+                img:'Hemingway.png',
+                name:'Hemingway',
+                breed:'Domestic Short Hair cross',
+                spayedOrNeutered:'Spayed/Neutered',
+                gender:'male',
+                age:'3Yrs 3Wks (approx)',
+                animalId:23897
+            },
+        ];
+        
+        $(document).ready(
+            ()=>{
+                dogspage.innerHTML=`<div class="col-lg-6 col-md-6 col-sm-12 border border-secondary text-center"><a class="text-decoration-none text-dark" href="detail.html?index=${[0]}" <div class="border border-dark text-center"> <img class="w-75 h-75" src=${dogs[0].img}><br> ${dogs[0].name}<br>${dogs[0].breed}<br> ${dogs[0].spayedOrNeutered}<br>${dogs[0].gender}<br>${dogs[0].age}<br>ID: ${dogs[0].animalId}</div></a></div`;
+                dogspage.innerHTML+=`<div class="col-lg-6 col-md-6 col-sm-12 border border-secondary text-center"><a class="text-decoration-none text-dark" href="detail.html?index=${[1]}" <div class="border border-dark text-center"> <img class="w-75 h-75" src=${dogs[1].img}><br> ${dogs[1].name}<br>${dogs[1].breed}<br> ${dogs[1].spayedOrNeutered}<br>${dogs[1].gender}<br>${dogs[1].age}<br>ID: ${dogs[1].animalId}</div></a></div>`;
+            }
+        );
+
+        var offset=2;
+        $("#loadmore").click(function(event){
+            showPage(event.target.dataset.page);
+            if(offset>=dogs.length){
+                buttonHolder.innerHTML = "";
+            }
+        });
+
+       function showPage(page){
+            dogspage.innerHTML+=`<div class="col-lg-6 col-md-6 col-sm-12 border border-secondary text-center"><a class="text-decoration-none text-dark" href="detail.html?index=${[offset]}" <div class="border border-dark text-center"> <img class="w-75 h-75" src=${dogs[offset].img}><br> ${dogs[offset].name}<br>${dogs[offset].breed}<br> ${dogs[offset].spayedOrNeutered}<br>${dogs[offset].gender}<br>${dogs[offset].age}<br>ID: ${dogs[offset].animalId}</div></a></div>`;
+            if(offset+1<dogs.length){
+                dogspage.innerHTML+=`<div class="col-lg-6 col-md-6 col-sm-12 border border-secondary text-center"><a class="text-decoration-none text-dark" href="detail.html?index=${[offset+1]}" <div class="border border-dark text-center"> <img class="w-75 h-75" src=${dogs[offset+1].img}><br> ${dogs[offset+1].name}<br>${dogs[offset+1].breed}<br> ${dogs[offset+1].spayedOrNeutered}<br>${dogs[offset+1].gender}<br>${dogs[offset+1].age}<br>ID: ${dogs[offset+1].animalId}</div></a></div>`;
+            }
+            offset+=2;
+       }
+    </script>
+</body>
+</html>
